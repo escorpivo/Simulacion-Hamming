@@ -72,6 +72,8 @@ public class sinRuido {
 		
 	}
 	
+	
+	//parte de codificar sin ruido
 	public static void codificar() {
 		longitud = alfabeto.length();
 		System.out.println(longitud);
@@ -158,7 +160,12 @@ public class sinRuido {
 		}
 	}
 	
+	
+	
+	//parte de decodificar sin ruido
 	public static void decodificar() {
+		
+		System.out.println("Prometo que más adelante decodificaré bien :)");
 		
 	}
 
