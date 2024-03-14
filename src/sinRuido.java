@@ -174,24 +174,52 @@ public class sinRuido {
 		//Para poder multiplicar los numeros de COD1 necesitamos hacer bloques 
 		//con el tamaño de n de la matriz
 		//En este caso n es 4
-		String[] bloques = new String[5] ; //CAMBIAR A ARRAY PARA QUE NO HAYA PROBLEMAS CON LA LONGITUD
+		/*
+		ArrayList<ArrayList<String>> matrizBloques = new ArrayList<ArrayList<String>>();
 		int numBloque = 0;
 		boolean faltanNumEnBloque = false;
 		for(int i = 0; i < cod1.length(); i+=n) {
 			if(i+n > cod1.length()) {
 				String bloqueFinal = cod1.toString().substring(i, cod1.length());
-				bloques[numBloque] = bloqueFinal;
+				matrizBloques.get(numBloque).add(bloqueFinal);
 				faltanNumEnBloque = true;
 			} else {
 				String bloque = cod1.toString().substring(i, i+n);
-				bloques[numBloque] = bloque;
+				matrizBloques.get(numBloque).add(bloque);
 				numBloque++;
 			}
 		}
 		
+		for(int i = 0; i < matrizBloques.size(); i++) {
+			for(int j = 0; j < matrizBloques.get(0).size(); j++) {
+				System.out.print(matrizBloques.get(i).get(j));
+			}
+			System.out.println();
+		}
+		*/
+		
+		String[][] bloques = new String[5][1] ; //CAMBIAR A ARRAY PARA QUE NO HAYA PROBLEMAS CON LA LONGITUD
+		int numBloque = 0;
+		boolean faltanNumEnBloque = false;
+		for(int i = 0; i < cod1.length(); i+=n) {
+			if(i+n > cod1.length()) {
+				String bloqueFinal = cod1.toString().substring(i, cod1.length());
+				bloques[numBloque][0] = bloqueFinal;
+				faltanNumEnBloque = true;
+			} else {
+				String bloque = cod1.toString().substring(i, i+n);
+				bloques[numBloque][0] = bloque;
+				numBloque++;
+			}
+		}
+		
+		
 		System.out.println("BLOQUES");
 		for(int i = 0; i < bloques.length; i++) {
-			System.out.println(bloques[i]);
+			for(int j = 0; j < bloques[0].length; j++) {
+				System.out.print(bloques[i][j]);
+			}
+			System.out.println();
 		}
 		
 		//Comprobamos que todas tienen el mismo tamaño
@@ -200,29 +228,33 @@ public class sinRuido {
 		
 		//Añadimos, según la práctica, numeros aleatorios a ese bloque
 		if(faltanNumEnBloque) {
-			int numFaltan = n - bloques[numBloque].length();
+			int numFaltan = n - bloques[numBloque][0].length();
 
 			for(int i = 0; i < numFaltan; i++) {
 				int num = (int)Math.floor(Math.random()*2);
-				bloques[numBloque] += String.valueOf(num);
+				bloques[numBloque][0] += String.valueOf(num);
 			}
 		}
 		
 		System.out.println("BLOQUES X2");
 		for(int i = 0; i < bloques.length; i++) {
-			System.out.print(bloques[i]);
+			for(int j = 0; j < bloques[0].length; j++) {
+				System.out.print(bloques[i][j]);
+			}
+			System.out.println();
 		}
+		
 		System.out.println();
-		//Bloques es un vector que contiene
+		//Bloques es un vector que contiene todos los numeros de COD más algunos numeros de mas por el random
 		
 		//Multiplicar matrices. Multiplicar los distintos bloques por la matriz generadora
 		int[][] codigos = new int[bloques.length][k];
-		/*
+		
 		for(int z = 0; z < matriz[0].length; z++) {
 			for(int i = 0; i < bloques.length; i++) {
 				int suma = 0; 
-				for(int j = 0; j < matriz[0].length; j++) {
-					suma += matriz[j][z] * Character.getNumericValue(bloques[i].charAt(j));
+				for(int j = 0; j < matriz.length; j++) {
+					suma += matriz[j][z] * Character.getNumericValue(bloques[i][0].charAt(j));
 					if((suma%2) == 0) {
 						suma = 0;
 					} else {
@@ -233,13 +265,24 @@ public class sinRuido {
 			}
 		}
 		
+		System.out.println("MATRIZ RESULTANTE");
 		for(int i = 0; i < codigos.length; i++) {
 			for(int j = 0; j < codigos[0].length; j++) {
 				System.out.print(codigos[i][j]);
 			}
 			System.out.println();
 		}
-		*/
+		
+		//Pasar de la matriz de los bloques a un array cod2
+		StringBuffer cod2 = new StringBuffer();
+		for(int i = 0; i < codigos.length; i++) {
+			for(int j = 0; j < codigos[0].length; j++) {
+				cod2.append(String.valueOf(codigos[i][j]));
+			}
+		}
+		
+		System.out.println("COD2");
+		System.out.println(cod2);
 	}
 	
 	
