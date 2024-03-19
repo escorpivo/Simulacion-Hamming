@@ -181,7 +181,7 @@ public class sinRuido {
 		}
 		*/
 		
-		String[][] bloques = new String[32][1] ; //CAMBIAR A ARRAY PARA QUE NO HAYA PROBLEMAS CON LA LONGITUD
+		String[][] bloques = new String[27][1]; //CAMBIAR A ARRAY PARA QUE NO HAYA PROBLEMAS CON LA LONGITUD
 		int numBloque = 0;
 		boolean faltanNumEnBloque = false;
 		for(int i = 0; i < cod1.length(); i+=n) {
@@ -283,8 +283,8 @@ public class sinRuido {
 		//Almacenar por bloques por la dimensión de la matriz k
 		ArrayList<String> bloques = new ArrayList<String>();
 		
-		for(int i = 0; i < cod2.length(); i+=numEntero+1) {
-			bloques.add(cod2.substring(i, i+numEntero+1));
+		for(int i = 0; i < cod2.length(); i+=k) {
+			bloques.add(cod2.substring(i, i+k));
 		}
 		System.out.println(k);
 		System.out.println(numEntero);
@@ -330,6 +330,7 @@ public class sinRuido {
 			posiciones.add(String.valueOf(pos));
 		}
 		
+		System.out.println("\nPOSICIONES");
 		for(int i = 0; i < posiciones.size(); i++) {
 			System.out.println(posiciones.get(i));
 		}
