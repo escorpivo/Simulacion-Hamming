@@ -181,28 +181,36 @@ public class sinRuido {
 		}
 		*/
 		
-		String[][] bloques = new String[27][1]; //CAMBIAR A ARRAY PARA QUE NO HAYA PROBLEMAS CON LA LONGITUD
+		String[] bloques = new String[(cod1.length()/4)]; /*CAMBIADO A ARRAY e intento implementar que sea dinamico para
+		q no de problema con los null -Víctor*/
+
 		int numBloque = 0;
 		boolean faltanNumEnBloque = false;
+
 		for(int i = 0; i < cod1.length(); i+=n) {
+			
 			if(i+n > cod1.length()) {
+
 				String bloqueFinal = cod1.toString().substring(i, cod1.length());
-				bloques[numBloque][0] = bloqueFinal;
+				bloques[numBloque] = bloqueFinal;
+
 				faltanNumEnBloque = true;
+
 			} else {
+
 				String bloque = cod1.toString().substring(i, i+n);
-				bloques[numBloque][0] = bloque;
+				bloques[numBloque] = bloque;
 				numBloque++;
 			}
 		}
 		
 		
 		System.out.println("BLOQUES");
+
 		for(int i = 0; i < bloques.length; i++) {
-			for(int j = 0; j < bloques[0].length; j++) {
-				System.out.print(bloques[i][j]);
-			}
-			System.out.println();
+
+				System.out.println(bloques[i]);
+	
 		}
 		
 		//Comprobamos que todas tienen el mismo tamaño
@@ -211,25 +219,22 @@ public class sinRuido {
 		
 		//Añadimos, según la práctica, numeros aleatorios a ese bloque
 		if(faltanNumEnBloque) {
-			int numFaltan = n - bloques[numBloque][0].length();
+			int numFaltan = n - bloques[numBloque].length();
 
 			for(int i = 0; i < numFaltan; i++) {
 				int num = (int)Math.floor(Math.random()*2);
-				bloques[numBloque][0] += String.valueOf(num);
+				bloques[numBloque] += String.valueOf(num);
 			}
 		}
 		
 		System.out.println("BLOQUES X2");
 		for(int i = 0; i < bloques.length; i++) {
-			for(int j = 0; j < bloques[0].length; j++) {
-				System.out.print(bloques[i][j]);
-			}
-			System.out.println();
+				System.out.println(bloques[i]);
+			
 		}
 		
 		System.out.println();
 		//Bloques es un vector que contiene todos los numeros de COD más algunos numeros de mas por el random
-		
 		//Multiplicar matrices. Multiplicar los distintos bloques por la matriz generadora
 		int[][] codigos = new int[bloques.length][k];
 		
@@ -237,7 +242,7 @@ public class sinRuido {
 			for(int i = 0; i < bloques.length; i++) {
 				int suma = 0; 
 				for(int j = 0; j < matriz.length; j++) {
-					suma += matriz[j][z] * Character.getNumericValue(bloques[i][0].charAt(j));
+					suma += matriz[j][z] * Character.getNumericValue(bloques[i].charAt(j));
 					if((suma%2) == 0) {
 						suma = 0;
 					} else {
