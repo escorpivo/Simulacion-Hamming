@@ -180,9 +180,9 @@ public class sinRuido {
 			System.out.println();
 		}
 		*/
-		
-		String[] bloques = new String[(cod1.length()/4)]; /*CAMBIADO A ARRAY e intento implementar que sea dinamico para
-		q no de problema con los null -Víctor*/
+		ArrayList<String> bloques = new ArrayList<String>();
+		//String[] bloques = new String[(cod1.length()/4)]; /*CAMBIADO A ARRAY e intento implementar que sea dinamico para
+		//q no de problema con los null -Víctor*/
 
 		int numBloque = 0;
 		boolean faltanNumEnBloque = false;
@@ -192,14 +192,15 @@ public class sinRuido {
 			if(i+n > cod1.length()) {
 
 				String bloqueFinal = cod1.toString().substring(i, cod1.length());
-				bloques[numBloque] = bloqueFinal;
-
+				//bloques[numBloque] = bloqueFinal;
+				bloques.add(bloqueFinal);
 				faltanNumEnBloque = true;
 
 			} else {
 
 				String bloque = cod1.toString().substring(i, i+n);
-				bloques[numBloque] = bloque;
+				//bloques[numBloque] = bloque;
+				bloques.add(bloque);
 				numBloque++;
 			}
 		}
@@ -207,9 +208,9 @@ public class sinRuido {
 		
 		System.out.println("BLOQUES");
 
-		for(int i = 0; i < bloques.length; i++) {
+		for(int i = 0; i < bloques.size(); i++) {
 
-				System.out.println(bloques[i]);
+				System.out.println(bloques.get(i));
 	
 		}
 		
@@ -219,30 +220,33 @@ public class sinRuido {
 		
 		//Añadimos, según la práctica, numeros aleatorios a ese bloque
 		if(faltanNumEnBloque) {
-			int numFaltan = n - bloques[numBloque].length();
+			int numFaltan = n - bloques.get(numBloque).length();
 
 			for(int i = 0; i < numFaltan; i++) {
 				int num = (int)Math.floor(Math.random()*2);
-				bloques[numBloque] += String.valueOf(num);
+				String a = bloques.get(numBloque) + String.valueOf(num);
+				//bloques[numBloque] += String.valueOf(num);
+				bloques.remove(numBloque);
+				bloques.add(a);
 			}
 		}
 		
 		System.out.println("BLOQUES X2");
-		for(int i = 0; i < bloques.length; i++) {
-				System.out.println(bloques[i]);
+		for(int i = 0; i < bloques.size(); i++) {
+				System.out.println(bloques.get(i));
 			
 		}
 		
 		System.out.println();
 		//Bloques es un vector que contiene todos los numeros de COD más algunos numeros de mas por el random
 		//Multiplicar matrices. Multiplicar los distintos bloques por la matriz generadora
-		int[][] codigos = new int[bloques.length][k];
+		int[][] codigos = new int[bloques.size()][k];
 		
 		for(int z = 0; z < matriz[0].length; z++) {
-			for(int i = 0; i < bloques.length; i++) {
+			for(int i = 0; i < bloques.size(); i++) {
 				int suma = 0; 
 				for(int j = 0; j < matriz.length; j++) {
-					suma += matriz[j][z] * Character.getNumericValue(bloques[i].charAt(j));
+					suma += matriz[j][z] * Character.getNumericValue(bloques.get(i).charAt(j));
 					if((suma%2) == 0) {
 						suma = 0;
 					} else {
