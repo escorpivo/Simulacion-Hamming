@@ -3,12 +3,12 @@ import java.util.Scanner;
 import java.math.*;
 
 public class ConRuido {
-	private static int[][] matrizH;
-	private static String alfabeto;
-	private static int[][] matrizGeneradora;
-	private static int n;
-	private static int k;
-	private static int numEntero;
+	private int[][] matrizH;
+	private String alfabeto;
+	private int[][] matrizGeneradora;
+	private int n;
+	private int k;
+	private int numEntero;
 	
 	public ConRuido(int[][] matrizGeneradora, int n, int k, int numEntero, String alfabeto) {
 		this.matrizGeneradora = matrizGeneradora;
@@ -18,7 +18,7 @@ public class ConRuido {
 		this.alfabeto = alfabeto;
 	}
 	
-	public static void decodificar() {
+	public void decodificar() {
 		int nH = 3;
 		int kH = 7;
 		int redundancia = 3;

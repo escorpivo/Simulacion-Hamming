@@ -8,12 +8,12 @@ public class Main {
 	static int k;
 	static int numEntero = 0;
 	
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		//Declaramos variables globales:
 				n = 4;
 				k = 7;
 				matriz = new int[n][k];
-				alfabeto = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdefghiíjklmnñopqrstuvwxyz";
+				alfabeto = "TlEu)niCs(e comyr,pd.avhgtMx";
 				
 				for(int i = 0 ; i < matriz.length; i ++) {
 					for(int j = 0; j < matriz[i].length; j++) {
@@ -48,7 +48,14 @@ public class Main {
 				//COD1 -- hacer el logaritmo en base 2 de la longitud del alfabeto
 				longitud = alfabeto.length();
 				double logaritmo = Math.log10(longitud)/Math.log10(2);
-				numEntero = (int) Math.round(logaritmo);
+				int entero = (int) Math.round(logaritmo);
+				if(logaritmo > entero) {
+					numEntero = entero +1;
+				} else {
+					numEntero = entero;
+				}
+
+				//numEntero = (int) Math.round(logaritmo);
 				System.out.println("LOGARITMO Y SU ENTERO");
 				System.out.println(logaritmo);
 				System.out.println(numEntero);
